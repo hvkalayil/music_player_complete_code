@@ -1,0 +1,1350 @@
+{
+	"version": 24,
+	"artboards": [
+		{
+			"name": "Artboard",
+			"translation": [
+				0,
+				0
+			],
+			"width": 500,
+			"height": 300,
+			"origin": [
+				0,
+				0
+			],
+			"clipContents": true,
+			"color": [
+				0.364705890417099,
+				0.364705890417099,
+				0.364705890417099,
+				1
+			],
+			"nodes": [
+				{
+					"name": "Switch",
+					"translation": [
+						250,
+						150
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 5,
+					"drawOrder": 1,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Switch Path",
+					"parent": 0,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 400,
+					"height": 200,
+					"cornerRadius": 200,
+					"type": "rectangle"
+				},
+				{
+					"name": "Color",
+					"parent": 0,
+					"opacity": 1,
+					"numColorStops": 2,
+					"colorStops": [
+						0.5960784554481506,
+						0.772549033164978,
+						0.8392156958580017,
+						1,
+						0,
+						0.7607311010360718,
+						0.845215380191803,
+						0.8733767867088318,
+						1,
+						1
+					],
+					"start": [
+						-198.2754669189453,
+						7.0687255859375
+					],
+					"end": [
+						195.30130004882812,
+						3.836456298828125
+					],
+					"fillRule": 1,
+					"type": "gradientFill"
+				},
+				{
+					"name": "Circle Node",
+					"translation": [
+						148.689697265625,
+						148.80999755859375
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"type": "node"
+				},
+				{
+					"name": "Switch Circle",
+					"parent": 3,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 2,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 4,
+					"opacity": 1,
+					"color": [
+						0.8910239934921265,
+						0.9548822045326233,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Switch Circle Path",
+					"parent": 4,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"bones": [],
+					"isVisible": true,
+					"isClosed": true,
+					"points": [
+						{
+							"pointType": 2,
+							"translation": [
+								0,
+								-75
+							],
+							"in": [
+								-41.421356201171875,
+								-75
+							],
+							"out": [
+								41.421356201171875,
+								-75
+							]
+						},
+						{
+							"pointType": 2,
+							"translation": [
+								75,
+								0
+							],
+							"in": [
+								75,
+								-41.421356201171875
+							],
+							"out": [
+								75,
+								41.421356201171875
+							]
+						},
+						{
+							"pointType": 2,
+							"translation": [
+								0,
+								75
+							],
+							"in": [
+								41.421356201171875,
+								75
+							],
+							"out": [
+								-41.421356201171875,
+								75
+							]
+						},
+						{
+							"pointType": 2,
+							"translation": [
+								-75,
+								0
+							],
+							"in": [
+								-75,
+								41.421356201171875
+							],
+							"out": [
+								-75,
+								-41.421356201171875
+							]
+						}
+					],
+					"type": "path"
+				},
+				{
+					"name": "Light Elipse1",
+					"translation": [
+						358.4129333496094,
+						102.37451934814453
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 3,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 7,
+					"opacity": 1,
+					"color": [
+						0.8901960849761963,
+						0.9529411792755127,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Ellipse Path",
+					"parent": 7,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 40,
+					"height": 40,
+					"type": "ellipse"
+				},
+				{
+					"name": "Light Elipse2",
+					"translation": [
+						309.544677734375,
+						147.06033325195312
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 4,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 10,
+					"opacity": 1,
+					"color": [
+						0.8901960849761963,
+						0.9529411792755127,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Ellipse Path",
+					"parent": 10,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 20,
+					"height": 20,
+					"type": "ellipse"
+				},
+				{
+					"name": "Moon Node",
+					"translation": [
+						354.6180114746094,
+						151.38873291015625
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 0,
+					"isCollapsed": false,
+					"clips": [],
+					"type": "node"
+				},
+				{
+					"name": "Switch Moon",
+					"parent": 13,
+					"translation": [
+						-7.85528564453125,
+						-76.4268569946289
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 5,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Path",
+					"parent": 14,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"bones": [],
+					"isVisible": true,
+					"isClosed": true,
+					"points": [
+						{
+							"pointType": 0,
+							"translation": [
+								-0.4134368896484375,
+								1.653778076171875
+							],
+							"radius": 0
+						},
+						{
+							"pointType": 2,
+							"translation": [
+								73.901123046875,
+								76.34125518798828
+							],
+							"in": [
+								71.47956848144531,
+								2.320648193359375
+							],
+							"out": [
+								75.20344543457031,
+								111.5081558227539
+							]
+						},
+						{
+							"pointType": 2,
+							"translation": [
+								2.3248748779296875,
+								150.95941162109375
+							],
+							"in": [
+								45.4002685546875,
+								147.57443237304688
+							],
+							"out": [
+								-31.32958221435547,
+								154.14599609375
+							]
+						},
+						{
+							"pointType": 0,
+							"translation": [
+								-58.23150634765625,
+								124.61931610107422
+							],
+							"radius": 0
+						},
+						{
+							"pointType": 1,
+							"translation": [
+								19.557449340820312,
+								76.65479278564453
+							],
+							"in": [
+								1.2005615234375,
+								128.72470092773438
+							],
+							"out": [
+								37.914337158203125,
+								24.584884643554688
+							]
+						}
+					],
+					"type": "path"
+				},
+				{
+					"name": "Color",
+					"parent": 14,
+					"opacity": 1,
+					"color": [
+						0.8901960849761963,
+						0.9529411792755127,
+						1,
+						1
+					],
+					"fillRule": 0,
+					"type": "colorFill"
+				},
+				{
+					"name": "Moon Stars",
+					"translation": [
+						205.6507568359375,
+						153.16021728515625
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 0,
+					"isCollapsed": false,
+					"clips": [],
+					"type": "node"
+				},
+				{
+					"name": "Star",
+					"parent": 17,
+					"translation": [
+						59.085418701171875,
+						41.75395202636719
+					],
+					"rotation": 0,
+					"scale": [
+						0.5,
+						0.48619556427001953
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 6,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 18,
+					"opacity": 1,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Star Path",
+					"parent": 18,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 37,
+					"height": 37,
+					"points": 5,
+					"innerRadius": 0.5,
+					"type": "star"
+				},
+				{
+					"name": "Node",
+					"parent": 18,
+					"translation": [
+						-543.5964965820312,
+						296.131103515625
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"type": "node"
+				},
+				{
+					"name": "Star",
+					"parent": 17,
+					"translation": [
+						-13.073822021484375,
+						-58.01397705078125
+					],
+					"rotation": 0,
+					"scale": [
+						0.4000000059604645,
+						0.4000000059604645
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 7,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 22,
+					"opacity": 1,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Star Path",
+					"parent": 22,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 37,
+					"height": 37,
+					"points": 5,
+					"innerRadius": 0.5,
+					"type": "star"
+				},
+				{
+					"name": "Ellipse",
+					"parent": 17,
+					"translation": [
+						-34.8255615234375,
+						-10.592071533203125
+					],
+					"rotation": 0,
+					"scale": [
+						0.30000001192092896,
+						0.30000001192092896
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 8,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 25,
+					"opacity": 1,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Ellipse Path",
+					"parent": 25,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 30,
+					"height": 30,
+					"type": "ellipse"
+				},
+				{
+					"name": "Ellipse",
+					"parent": 17,
+					"translation": [
+						37.33366394042969,
+						6.3496856689453125
+					],
+					"rotation": 0,
+					"scale": [
+						0.30000001192092896,
+						0.30000001192092896
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 9,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 28,
+					"opacity": 1,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Ellipse Path",
+					"parent": 28,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 30,
+					"height": 30,
+					"type": "ellipse"
+				},
+				{
+					"name": "Ellipse",
+					"parent": 17,
+					"translation": [
+						72.47207641601562,
+						-47.61286926269531
+					],
+					"rotation": 0,
+					"scale": [
+						0.30000001192092896,
+						0.30000001192092896
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"isVisible": true,
+					"blendMode": 3,
+					"drawOrder": 10,
+					"transformAffectsStroke": false,
+					"type": "shape"
+				},
+				{
+					"name": "Color",
+					"parent": 31,
+					"opacity": 1,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Ellipse Path",
+					"parent": 31,
+					"translation": [
+						0,
+						0
+					],
+					"rotation": 0,
+					"scale": [
+						1,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 30,
+					"height": 30,
+					"type": "ellipse"
+				}
+			],
+			"animations": [
+				{
+					"name": "Light",
+					"fps": 60,
+					"duration": 1.5,
+					"isLooping": false,
+					"keyed": [
+						{
+							"component": 0
+						},
+						{
+							"component": 2,
+							"fillGradient": [
+								[
+									{
+										"time": 0,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"length": 14,
+										"value": [
+											-198.2754669189453,
+											7.0687255859375,
+											195.30130004882812,
+											3.836456298828125,
+											0.0313725508749485,
+											0.04313725605607033,
+											0.05882352963089943,
+											1,
+											0,
+											0.2862745225429535,
+											0.2862745225429535,
+											0.2862745225429535,
+											1,
+											1
+										]
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"length": 14,
+										"value": [
+											-198.2754669189453,
+											7.0687255859375,
+											195.30130004882812,
+											3.836456298828125,
+											0.5960784554481506,
+											0.772549033164978,
+											0.8392156958580017,
+											1,
+											0,
+											0.7607843279838562,
+											0.8470588326454163,
+											0.8745098114013672,
+											1,
+											1
+										]
+									}
+								]
+							]
+						},
+						{
+							"component": 3,
+							"opacity": [
+								[
+									{
+										"time": 0.9,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 0.9333333333333333,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							],
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 354.6180114746094
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 148.689697265625
+									}
+								]
+							]
+						},
+						{
+							"component": 7,
+							"posX": [
+								[
+									{
+										"time": 1.2333333333333334,
+										"interpolatorType": 2,
+										"cubicX1": 0.5698924731182796,
+										"cubicY1": -0.28405011084771914,
+										"cubicX2": 0.2849462365591398,
+										"cubicY2": 1.4901434375393774,
+										"value": 403.30999755859375
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 0.5698924731182796,
+										"cubicY1": -0.28405011084771914,
+										"cubicX2": 0.2849462365591398,
+										"cubicY2": 1.4901434375393774,
+										"value": 366.3031311035156
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 1.1666666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							],
+							"posY": [
+								[
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"value": 99.21843719482422
+									}
+								]
+							]
+						},
+						{
+							"component": 10,
+							"posX": [
+								[
+									{
+										"time": 1.2333333333333334,
+										"interpolatorType": 2,
+										"cubicX1": 0.6236559139784946,
+										"cubicY1": -0.2974909710627729,
+										"cubicX2": 0.34946236559139787,
+										"cubicY2": 1.517025157969485,
+										"value": 360.3399963378906
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 0.6236559139784946,
+										"cubicY1": -0.2974909710627729,
+										"cubicX2": 0.34946236559139787,
+										"cubicY2": 1.517025157969485,
+										"value": 317.43487548828125
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 1.1666666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							],
+							"posY": [
+								[
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"value": 143.90420532226562
+									}
+								]
+							]
+						},
+						{
+							"component": 13,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 354.6180114746094
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 148.689697265625
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.9,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.9333333333333333,
+										"interpolatorType": 1,
+										"value": 0
+									}
+								]
+							]
+						},
+						{
+							"component": 17,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 2,
+										"cubicX1": 0.9139784946236559,
+										"cubicY1": -0.015232906546643887,
+										"cubicX2": 0.17204301075268819,
+										"cubicY2": 1.2750896740985174,
+										"value": 205.6507568359375
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 2,
+										"cubicX1": 0.9139784946236559,
+										"cubicY1": -0.015232906546643887,
+										"cubicX2": 0.17204301075268819,
+										"cubicY2": 1.2750896740985174,
+										"value": 93.75
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.45,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									}
+								]
+							]
+						}
+					],
+					"animationStart": 0,
+					"animationEnd": 1.5,
+					"type": "animation"
+				},
+				{
+					"name": "Dark",
+					"fps": 60,
+					"duration": 1.5,
+					"isLooping": false,
+					"keyed": [
+						{
+							"component": 0
+						},
+						{
+							"component": 2,
+							"fillGradient": [
+								[
+									{
+										"time": 0,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"length": 14,
+										"value": [
+											-198.2754669189453,
+											7.0687255859375,
+											195.30130004882812,
+											3.836456298828125,
+											0.5972796082496643,
+											0.7717634439468384,
+											0.8400397300720215,
+											1,
+											0,
+											0.7607311010360718,
+											0.845215380191803,
+											0.8733767867088318,
+											1,
+											1
+										]
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"length": 14,
+										"value": [
+											-198.2754669189453,
+											7.0687255859375,
+											195.30130004882812,
+											3.836456298828125,
+											0.0313725508749485,
+											0.04313725605607033,
+											0.05882352963089943,
+											1,
+											0,
+											0.2862745225429535,
+											0.2862745225429535,
+											0.2862745225429535,
+											1,
+											1
+										]
+									}
+								]
+							]
+						},
+						{
+							"component": 3,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0.024514600083634153,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 148.689697265625
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0.024514600083634153,
+										"cubicX2": 0,
+										"cubicY2": 1,
+										"value": 342.3900146484375
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0.9,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.9333333333333333,
+										"interpolatorType": 1,
+										"value": 0
+									}
+								]
+							]
+						},
+						{
+							"component": 4,
+							"opacity": [
+								[
+									{
+										"time": 0.5833333333333334,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							]
+						},
+						{
+							"component": 7,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 1,
+										"value": 366.3031311035156
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 285.8231506347656
+									}
+								]
+							],
+							"posY": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 1,
+										"value": 99.21843719482422
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 143.4035186767578
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0.5833333333333334,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									}
+								]
+							]
+						},
+						{
+							"component": 10,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 1,
+										"value": 317.43487548828125
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 236.95489501953125
+									}
+								]
+							],
+							"posY": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 1,
+										"value": 143.90420532226562
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 188.0893096923828
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0.5833333333333334,
+										"interpolatorType": 1,
+										"value": 1
+									},
+									{
+										"time": 0.6166666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									}
+								]
+							]
+						},
+						{
+							"component": 13,
+							"posX": [
+								[
+									{
+										"time": 0.3333333333333333,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0.06987869098622312,
+										"cubicY2": 1.4119334747579688,
+										"value": 148.689697265625
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 1,
+										"cubicY1": 0,
+										"cubicX2": 0.06987869098622312,
+										"cubicY2": 1.4119334747579688,
+										"value": 342.3900146484375
+									}
+								]
+							],
+							"opacity": [
+								[
+									{
+										"time": 0.9,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 0.9333333333333333,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							]
+						},
+						{
+							"component": 17,
+							"opacity": [
+								[
+									{
+										"time": 1.1666666666666667,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 1.4333333333333333,
+										"interpolatorType": 1,
+										"value": 1
+									}
+								]
+							],
+							"posX": [
+								[
+									{
+										"time": 1.2333333333333334,
+										"interpolatorType": 2,
+										"cubicX1": 0.39245933614751344,
+										"cubicY1": -0.055915479607631546,
+										"cubicX2": 0,
+										"cubicY2": 1.8610014197008695,
+										"value": 336.70001220703125
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 2,
+										"cubicX1": 0.39245933614751344,
+										"cubicY1": -0.055915479607631546,
+										"cubicX2": 0,
+										"cubicY2": 1.8610014197008695,
+										"value": 190
+									}
+								]
+							]
+						}
+					],
+					"animationStart": 0,
+					"animationEnd": 1.5,
+					"type": "animation"
+				}
+			],
+			"type": "artboard"
+		}
+	]
+}
