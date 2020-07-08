@@ -37,7 +37,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             Column(
               children: [
                 Column(
-                  children: menuItems.entries
+                  children: kMenuItems.entries
                       .map((e) => makeMenuItems(e.key, e.value, context))
                       .toList(),
                 ),

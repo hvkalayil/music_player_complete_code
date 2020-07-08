@@ -43,18 +43,24 @@ class ThemeNotifier with ChangeNotifier {
   String getAlbumArt(int i) =>
       _audioFunctions.songs[i].albumArtwork ?? 'Default';
 
-  void setArt(String path, int index) =>
-      _audioFunctions.songs[index].setAlbumArt(path);
+  void setArt(String path, int index) {
+    _audioFunctions.songs[index].setAlbumArt(path);
+    notifyListeners();
+  }
 
   //For Song Title
   String getAlbumTitle(int i) => _audioFunctions.songs[i].title ?? 'Default';
 
-  void setTitle(String title, int index) =>
-      _audioFunctions.songs[index].setAlbumTitle(title);
+  void setTitle(String title, int index) {
+    _audioFunctions.songs[index].setAlbumTitle(title);
+    notifyListeners();
+  }
 
   //For Song Artist
   String getAlbumArtist(int i) => _audioFunctions.songs[i].artist ?? 'Default';
 
-  void setArtist(String artist, int index) =>
-      _audioFunctions.songs[index].setAlbumArtist(artist);
+  void setArtist(String artist, int index) {
+    _audioFunctions.songs[index].setAlbumArtist(artist);
+    notifyListeners();
+  }
 }

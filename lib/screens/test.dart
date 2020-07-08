@@ -1,5 +1,5 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:musicplayer/utilities/spotify_client.dart';
 
 class TestScreen extends StatefulWidget {
   static String id = 'TestScreen';
@@ -8,26 +8,32 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  String theme = 'Light';
+  @override
+  void initState() {
+    super.initState();
+    yay();
+  }
+
+  Future<void> yay() async {
+    final data = await SpotifyAPI.getData('Pookal Pookum');
+    print(data.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: 100,
-        color: Colors.red,
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              theme = 'Dark';
-            });
-          },
-          child: FlareActor(
-            'assets/theme_mode.flr',
-            animation: theme,
-            callback: (s) {
-              print(s);
-            },
-          ),
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                Theme.of(context).primaryColorLight,
+                Theme.of(context).primaryColorDark
+              ])),
         ),
       ),
     );

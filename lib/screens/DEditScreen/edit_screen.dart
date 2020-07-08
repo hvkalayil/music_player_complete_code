@@ -1,16 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:musicplayer/screens/BHomeScreen/thumbnail.dart';
-import 'package:musicplayer/screens/DEditScreen/online_art.dart';
 import 'package:musicplayer/theme/theme_notifier.dart';
-import 'package:musicplayer/utilities/audioFunctions.dart';
 import 'package:musicplayer/utilities/constants.dart';
 import 'package:musicplayer/utilities/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
+import 'PreviewFromApi/online_art.dart';
 import 'local_art.dart';
 
 class EditScreen extends StatefulWidget {
@@ -24,6 +20,8 @@ class EditScreen extends StatefulWidget {
 
 class _EditScreenState extends State<EditScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String art, title, artist;
+  ThemeNotifier themeNotifier;
 
   @override
   void initState() {
@@ -33,20 +31,26 @@ class _EditScreenState extends State<EditScreen> {
 
   //Saving to repopulate details onCancel
   void savingOriginalDetails() {
-    SavePreference.saveString(
-        'albumArt', themeNotifier.getAlbumArt(widget.index));
-    SavePreference.saveString(
-        'albumTitle', themeNotifier.getAlbumTitle(widget.index));
-    SavePreference.saveString(
-        'albumArtist', themeNotifier.getAlbumArtist(widget.index));
+    //Retrieving
+    themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
+    art = themeNotifier.getAlbumArt(widget.index);
+    title = themeNotifier.getAlbumTitle(widget.index);
+    artist = themeNotifier.getAlbumArtist(widget.index);
+
+    //Saving
+    SavePreference.saveString('albumArt', art);
+    SavePreference.saveString('albumTitle', title);
+    SavePreference.saveString('albumArtist', artist);
   }
 
   @override
   Widget build(BuildContext context) {
+    themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
@@ -100,7 +104,7 @@ class _EditScreenState extends State<EditScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () async {
                 //Retrieving
@@ -129,20 +133,46 @@ class _EditScreenState extends State<EditScreen> {
             style: Theme.of(context).textTheme.headline1,
           ),
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () async {
                 final _formState = _formKey.currentState;
                 if (_formState.validate()) {
                   _formState.save();
 
-                  //Storing changes to local
-                  List<SongInfo> localSongs = _audioFunctions.songs;
-                  final Map<int, List<SongInfo>> songsMap = {1: localSongs};
-                  final String encodedJson = json.encode(songsMap);
-                  SavePreference.saveString('LocalSongs', encodedJson);
-                  SavePreference.saveInt(
-                      'LocalSongsLength', _audioFunctions.len);
+                  //Retrieving all edits
+                  List<String> editedIndices =
+                      await SavePreference.getStringList('editedIndices') ?? [];
+                  List<String> editedArts =
+                      await SavePreference.getStringList('editedArts') ?? [];
+                  List<String> editedTitles =
+                      await SavePreference.getStringList('editedTitles') ?? [];
+                  List<String> editedArtists =
+                      await SavePreference.getStringList('editedArtists') ?? [];
+
+                  //Adding new edits
+                  final String i = widget.index.toString();
+                  final int index = editedIndices.indexOf(i);
+                  if (index != -1) {
+                    editedIndices[index] = i;
+                    editedArts[index] = themeNotifier.getAlbumArt(widget.index);
+                    editedTitles[index] =
+                        themeNotifier.getAlbumTitle(widget.index);
+                    editedArtists[index] =
+                        themeNotifier.getAlbumArtist(widget.index);
+                  } else {
+                    editedIndices.add(i);
+                    editedArts.add(themeNotifier.getAlbumArt(widget.index));
+                    editedTitles.add(themeNotifier.getAlbumTitle(widget.index));
+                    editedArtists
+                        .add(themeNotifier.getAlbumArtist(widget.index));
+                  }
+
+                  //Saving new edits
+                  SavePreference.saveStringList('editedIndices', editedIndices);
+                  SavePreference.saveStringList('editedArts', editedArts);
+                  SavePreference.saveStringList('editedTitles', editedTitles);
+                  SavePreference.saveStringList('editedArtists', editedArtists);
 
                   Navigator.pop(context);
                 }
@@ -197,7 +227,6 @@ class _EditScreenState extends State<EditScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     setupVisualResources();
-    getSongDetails();
   }
 
   //Setting visual resources
@@ -207,13 +236,5 @@ class _EditScreenState extends State<EditScreen> {
     deviceHeight = MediaQuery.of(context).size.height;
     light = Theme.of(context).primaryColorLight;
     dark = Theme.of(context).primaryColorDark;
-  }
-
-  //Retrieving local song details
-  ThemeNotifier themeNotifier;
-  AudioFunctions _audioFunctions = new AudioFunctions();
-  void getSongDetails() async {
-    themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
-    _audioFunctions = themeNotifier.getAudioFunctions();
   }
 }

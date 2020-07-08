@@ -20,7 +20,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => isHome
                   ? Navigator.pushNamed(context, SelectScreen.id)
@@ -50,7 +50,7 @@ class TopBar extends StatelessWidget {
                   ],
                 ),
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               child: Icon(FontAwesomeIcons.bars, color: Colors.white),

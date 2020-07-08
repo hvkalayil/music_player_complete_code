@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:musicplayer/screens/DEditScreen/edit_screen.dart';
@@ -25,7 +26,7 @@ class Buttons extends StatelessWidget {
         children: [
           //Edit BUTTON
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => Navigator.push(
                   context,
@@ -42,7 +43,7 @@ class Buttons extends StatelessWidget {
 
           //BACKWARD BUTTON
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => changeSong(context, index - 1),
               child: Icon(
@@ -67,7 +68,7 @@ class Buttons extends StatelessWidget {
                     playButton = FontAwesomeIcons.pause;
                 }
                 return Container(
-                  decoration: raisedButtonShadow,
+                  decoration: kRaisedButtonShadow,
                   child: RaisedButton(
                     padding: EdgeInsets.all(20),
                     onPressed: () {
@@ -87,7 +88,7 @@ class Buttons extends StatelessWidget {
 
           //FORWARD BUTTON
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => changeSong(context, index + 1),
               child: Icon(
@@ -99,7 +100,7 @@ class Buttons extends StatelessWidget {
 
           //RANDOM BUTTON
           Container(
-            decoration: raisedButtonShadow,
+            decoration: kRaisedButtonShadow,
             child: RaisedButton(
               onPressed: () => changeSong(context, index, isRandom: true),
               child: Icon(

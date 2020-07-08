@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musicplayer/utilities/audioFunctions.dart';
 
-class SliderBar extends StatefulWidget {
+class SliderBar extends StatelessWidget {
   const SliderBar({Key key, @required this.audioFnObj, @required this.index})
       : super(key: key);
 
@@ -9,14 +9,8 @@ class SliderBar extends StatefulWidget {
   final int index;
 
   @override
-  _SliderBarState createState() => _SliderBarState();
-}
-
-class _SliderBarState extends State<SliderBar> {
-  double v = 0, max = 0;
-
-  @override
   Widget build(BuildContext context) {
+    double v, max;
     return Container(
       margin: EdgeInsets.only(left: 30, right: 30, top: 30),
       child: Column(
@@ -26,7 +20,7 @@ class _SliderBarState extends State<SliderBar> {
             children: [
               //Current time
               StreamBuilder<Duration>(
-                  stream: widget.audioFnObj.getPosition(),
+                  stream: audioFnObj.getPosition(),
                   builder: (context, snapshot) {
                     int seconds = snapshot.hasData
                         ? snapshot.data.inSeconds - snapshot.data.inMinutes * 60
@@ -47,7 +41,7 @@ class _SliderBarState extends State<SliderBar> {
 
               //Full time
               StreamBuilder<Duration>(
-                  stream: widget.audioFnObj.getLength(),
+                  stream: audioFnObj.getLength(),
                   builder: (context, snapshot) {
                     max = snapshot.data != null
                         ? snapshot.data.inSeconds.toDouble()
@@ -73,7 +67,7 @@ class _SliderBarState extends State<SliderBar> {
 
           //Slider
           StreamBuilder<Duration>(
-              stream: widget.audioFnObj.getPosition(),
+              stream: audioFnObj.getPosition(),
               builder: (context, snapshot) {
                 v = snapshot.hasData ? snapshot.data.inSeconds.toDouble() : 0;
                 return Slider(
@@ -81,7 +75,7 @@ class _SliderBarState extends State<SliderBar> {
                   max: max,
                   value: v,
                   onChanged: (val) async {
-                    int result = await widget.audioFnObj
+                    int result = await audioFnObj
                         .changeSlider(Duration(seconds: val.toInt()));
                     v = result.toDouble();
                   },

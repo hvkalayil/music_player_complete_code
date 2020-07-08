@@ -20,7 +20,7 @@ class LocalArt extends StatelessWidget {
     return Column(
       children: [
         Container(
-          decoration: raisedButtonShadow,
+          decoration: kRaisedButtonShadow,
           child: RaisedButton(
             onPressed: () async {
               //Getting file from User

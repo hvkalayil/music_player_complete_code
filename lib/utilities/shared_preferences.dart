@@ -31,4 +31,21 @@ class SavePreference {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
   }
+
+  //STRING LIST
+  static void saveStringList(String key, List<String> value) {
+    SharedPreferences.getInstance()
+        .then((prefs) => prefs.setStringList(key, value));
+  }
+
+  static Future<List<String>> getStringList(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(key);
+  }
+
+  //CLEAR
+  static Future<void> clearEverything() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.clear();
+  }
 }

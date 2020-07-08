@@ -92,7 +92,7 @@ class SongList extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: raisedButtonShadow,
+              decoration: kRaisedButtonShadow,
               child: RaisedButton(
                 onPressed: () {},
                 child: Icon(

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:musicplayer/utilities/shared_preferences.dart';
@@ -23,7 +21,7 @@ class AudioFunctions {
   FlutterAudioQuery audioQuery;
   AudioPlayer audioPlayer;
   List<SongInfo> songs;
-  Map<String,String> localSongs;
+  Map<String, String> localSongs;
   int len;
 
   AudioFunctions() {
@@ -36,17 +34,28 @@ class AudioFunctions {
   getLocalSongs() async {
     this.songs = await audioQuery.getSongs();
     this.len = this.songs.length;
-    final int oldLength = await SavePreference.getInt('LocalSongsLength') ?? -1;
 
-    if (this.len > oldLength) {
-      Map<String, dynamic> songsMap;
-      this.songs.forEach((element) {songsMap[element]=element});
-      SavePreference.saveString('LocalSongs', encodedJson);
-      SavePreference.saveInt('LocalSongsLength', this.len);
-    } else {
-      final String encodedJson = await SavePreference.getString('LocalSongs');
-      final Map decodedJson = json.decode(encodedJson);
-      this.songs = decodedJson[1];
+    //Updating list if changes exist
+    final List<String> editedIndices =
+        await SavePreference.getStringList('editedIndices') ?? [];
+    if (editedIndices != []) {
+      //Retrieving edits
+      final List<String> editedArts =
+          await SavePreference.getStringList('editedArts') ?? [];
+      final List<String> editedTitles =
+          await SavePreference.getStringList('editedTitles') ?? [];
+      final List<String> editedArtists =
+          await SavePreference.getStringList('editedArtists') ?? [];
+
+      //Saving edits
+      int i = 0;
+      editedIndices.forEach((element) {
+        final int index = int.parse(element);
+        this.songs[index].setAlbumArt(editedArts[i]);
+        this.songs[index].setAlbumTitle(editedTitles[i]);
+        this.songs[index].setAlbumArtist(editedArtists[i]);
+        i++;
+      });
     }
   }
 
