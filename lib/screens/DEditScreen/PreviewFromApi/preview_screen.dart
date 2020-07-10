@@ -7,16 +7,23 @@ import 'package:provider/provider.dart';
 
 class PreviewScreen extends StatefulWidget {
   static String id = 'PreviewScreen';
-  const PreviewScreen({Key key, @required this.data});
+  const PreviewScreen({Key key, @required this.data, @required this.limit});
 
   final Map<int, Map<String, dynamic>> data;
+  final int limit;
 
   @override
   _PreviewScreenState createState() => _PreviewScreenState();
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
-  List<bool> isSelected = [false, false, false, false, false];
+  List<bool> isSelected = [];
+  @override
+  void initState() {
+    super.initState();
+    isSelected = List<bool>.generate(widget.limit, (index) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +92,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < widget.limit; i++) {
               isSelected[i] = i == index ? true : false;
             }
           });
@@ -177,10 +184,6 @@ class _PreviewScreenState extends State<PreviewScreen> {
     themeNotifier.setArtist(_selectedMap['artist'], _songIndex);
 
     //Popping back to edit screen
-    print(_songIndex);
-    print(themeNotifier.getAlbumArt(_songIndex));
-    print(themeNotifier.getAlbumTitle(_songIndex));
-    print(themeNotifier.getAlbumArtist(_songIndex));
     int count = 0;
     Navigator.of(context).popUntil((_) => count++ >= 2);
   }

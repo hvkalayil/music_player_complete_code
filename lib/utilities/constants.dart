@@ -4,10 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final Map<IconData, String> kMenuItems = {
   FontAwesomeIcons.slidersH: 'EQUALIZER',
-  FontAwesomeIcons.laptop: 'DEVICES',
-  FontAwesomeIcons.trash: 'DELETE CACHE',
   FontAwesomeIcons.info: 'ABOUT',
-  FontAwesomeIcons.wrench: 'SETTINGS',
+  FontAwesomeIcons.star: 'RATE APP',
 };
 
 final BoxDecoration kRaisedButtonShadow = BoxDecoration(

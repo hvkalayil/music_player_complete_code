@@ -26,8 +26,8 @@ class SpotifyOAuth2Client extends OAuth2Client {
 //429 - Too Many requests
 
 class SpotifyAPI {
-  static const limit = 5;
-  static Future<Map<int, Map<String, dynamic>>> getData(String query) async {
+  static Future<Map<int, Map<String, dynamic>>> getData(
+      String query, int limit) async {
     //Getting secret key
     final _keys = await kGetKeys();
 
@@ -35,12 +35,14 @@ class SpotifyAPI {
     SpotifyOAuth2Client client = SpotifyOAuth2Client(
         customUriScheme: 'com.hoseakalayil.musicplayer',
         redirectUri: 'com.hoseakalayil.musicplayer:/oauth2redirect');
+
     OAuth2Helper helper = OAuth2Helper(client,
         grantType: OAuth2Helper.AUTHORIZATION_CODE, clientId: _keys[0]);
 
     //Searching
     Uri requestUrl = Uri.parse('https://api.spotify.com/v1/search?'
         'q=$query'
+        '&limit=$limit'
         '&type=track');
     http.Response res = await helper.get(requestUrl.toString());
 
@@ -50,15 +52,15 @@ class SpotifyAPI {
     //Success
     if (responseCode == 200) {
       final body = jsonDecode(res.body);
-      for (int i = 0; i < 5; i++) {
-        //Break if there is less than 5
+      for (int i = 0; i < limit; i++) {
+        //Break if there is less than limit
         try {
           responseData.addAll({
             i: {
               'code': responseCode,
               'art': body['tracks']['items'][i]['album']['images'][0]['url'],
               'title': body['tracks']['items'][i]['album']['name'],
-              'artist': body['tracks']['items'][i]['artists'][0]['name']
+              'artist': body['tracks']['items'][i]['artists'][0]['name'],
             }
           });
         } catch (e) {
@@ -68,7 +70,6 @@ class SpotifyAPI {
           break;
         }
       }
-      print(responseData);
     }
 
     //Failure

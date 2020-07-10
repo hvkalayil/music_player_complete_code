@@ -89,4 +89,8 @@ class AudioFunctions {
   Stream<AudioPlayerState> getState() {
     return audioPlayer.onPlayerStateChanged;
   }
+
+  Future<List<SongInfo>> searchLocalSong(String query) {
+    return audioQuery.searchSongs(query: query);
+  }
 }

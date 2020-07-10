@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:musicplayer/screens/BHomeScreen/thumbnail.dart';
@@ -18,24 +19,25 @@ class EditScreen extends StatefulWidget {
   _EditScreenState createState() => _EditScreenState();
 }
 
-class _EditScreenState extends State<EditScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String art, title, artist;
-  ThemeNotifier themeNotifier;
-
+class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     savingOriginalDetails();
   }
 
   //Saving to repopulate details onCancel
+  ThemeNotifier themeNotifier;
+  TextEditingController _titleController, _artistController;
   void savingOriginalDetails() {
     //Retrieving
     themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
-    art = themeNotifier.getAlbumArt(widget.index);
-    title = themeNotifier.getAlbumTitle(widget.index);
-    artist = themeNotifier.getAlbumArtist(widget.index);
+    final String art = themeNotifier.getAlbumArt(widget.index);
+    final String title = themeNotifier.getAlbumTitle(widget.index);
+    final String artist = themeNotifier.getAlbumArtist(widget.index);
+    _titleController = TextEditingController(text: title);
+    _artistController = TextEditingController(text: artist);
 
     //Saving
     SavePreference.saveString('albumArt', art);
@@ -43,9 +45,9 @@ class _EditScreenState extends State<EditScreen> {
     SavePreference.saveString('albumArtist', artist);
   }
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -82,12 +84,10 @@ class _EditScreenState extends State<EditScreen> {
                   ),
 
                   //Change Song Title
-                  editSongDetails(themeNotifier.getAlbumTitle(widget.index),
-                      'Change Song Title'),
+                  editSongDetails('Change Song Title', _titleController),
 
                   //Change Song Author
-                  editSongDetails(themeNotifier.getAlbumArtist(widget.index),
-                      'Change Song Artist'),
+                  editSongDetails('Change Song Artist', _artistController),
                 ],
               ),
             ),
@@ -97,7 +97,8 @@ class _EditScreenState extends State<EditScreen> {
     );
   }
 
-  editTopBar() {
+  //Top Bar
+  Container editTopBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Row(
@@ -106,22 +107,7 @@ class _EditScreenState extends State<EditScreen> {
           Container(
             decoration: kRaisedButtonShadow,
             child: RaisedButton(
-              onPressed: () async {
-                //Retrieving
-                final String originalArt =
-                    await SavePreference.getString('albumArt');
-                final String originalTitle =
-                    await SavePreference.getString('albumTitle');
-                final String originalArtist =
-                    await SavePreference.getString('albumArtist');
-
-                //Repopulating
-                themeNotifier.setArt(originalArt, widget.index);
-                themeNotifier.setArt(originalTitle, widget.index);
-                themeNotifier.setArt(originalArtist, widget.index);
-
-                Navigator.pop(context);
-              },
+              onPressed: () => onCancelClick(),
               child: Icon(
                 FontAwesomeIcons.times,
                 color: Colors.white,
@@ -135,48 +121,7 @@ class _EditScreenState extends State<EditScreen> {
           Container(
             decoration: kRaisedButtonShadow,
             child: RaisedButton(
-              onPressed: () async {
-                final _formState = _formKey.currentState;
-                if (_formState.validate()) {
-                  _formState.save();
-
-                  //Retrieving all edits
-                  List<String> editedIndices =
-                      await SavePreference.getStringList('editedIndices') ?? [];
-                  List<String> editedArts =
-                      await SavePreference.getStringList('editedArts') ?? [];
-                  List<String> editedTitles =
-                      await SavePreference.getStringList('editedTitles') ?? [];
-                  List<String> editedArtists =
-                      await SavePreference.getStringList('editedArtists') ?? [];
-
-                  //Adding new edits
-                  final String i = widget.index.toString();
-                  final int index = editedIndices.indexOf(i);
-                  if (index != -1) {
-                    editedIndices[index] = i;
-                    editedArts[index] = themeNotifier.getAlbumArt(widget.index);
-                    editedTitles[index] =
-                        themeNotifier.getAlbumTitle(widget.index);
-                    editedArtists[index] =
-                        themeNotifier.getAlbumArtist(widget.index);
-                  } else {
-                    editedIndices.add(i);
-                    editedArts.add(themeNotifier.getAlbumArt(widget.index));
-                    editedTitles.add(themeNotifier.getAlbumTitle(widget.index));
-                    editedArtists
-                        .add(themeNotifier.getAlbumArtist(widget.index));
-                  }
-
-                  //Saving new edits
-                  SavePreference.saveStringList('editedIndices', editedIndices);
-                  SavePreference.saveStringList('editedArts', editedArts);
-                  SavePreference.saveStringList('editedTitles', editedTitles);
-                  SavePreference.saveStringList('editedArtists', editedArtists);
-
-                  Navigator.pop(context);
-                }
-              },
+              onPressed: () => onSaveClick(),
               child: Icon(
                 FontAwesomeIcons.check,
                 color: Colors.white,
@@ -188,8 +133,64 @@ class _EditScreenState extends State<EditScreen> {
     );
   }
 
-  String _newTitle, _newArtist;
-  editSongDetails(String value, String label) {
+  //Part of topbar
+  Future<void> onCancelClick() async {
+    //Retrieving
+    final String originalArt = await SavePreference.getString('albumArt');
+    final String originalTitle = await SavePreference.getString('albumTitle');
+    final String originalArtist = await SavePreference.getString('albumArtist');
+
+    //Repopulating
+    themeNotifier.setArt(originalArt, widget.index);
+    themeNotifier.setArt(originalTitle, widget.index);
+    themeNotifier.setArt(originalArtist, widget.index);
+
+    Navigator.pop(context);
+  }
+
+  //Part of topbar
+  Future<void> onSaveClick() async {
+    final _formState = _formKey.currentState;
+    if (_formState.validate()) {
+      _formState.save();
+
+      //Retrieving all previous edits
+      List<String> editedIndices =
+          await SavePreference.getStringList('editedIndices') ?? [];
+      List<String> editedArts =
+          await SavePreference.getStringList('editedArts') ?? [];
+      List<String> editedTitles =
+          await SavePreference.getStringList('editedTitles') ?? [];
+      List<String> editedArtists =
+          await SavePreference.getStringList('editedArtists') ?? [];
+
+      //Adding current edits
+      final String i = widget.index.toString();
+      final int index = editedIndices.indexOf(i);
+      if (index != -1) {
+        editedIndices[index] = i;
+        editedArts[index] = themeNotifier.getAlbumArt(widget.index);
+        editedTitles[index] = themeNotifier.getAlbumTitle(widget.index);
+        editedArtists[index] = themeNotifier.getAlbumArtist(widget.index);
+      } else {
+        editedIndices.add(i);
+        editedArts.add(themeNotifier.getAlbumArt(widget.index));
+        editedTitles.add(themeNotifier.getAlbumTitle(widget.index));
+        editedArtists.add(themeNotifier.getAlbumArtist(widget.index));
+      }
+
+      //Saving new edits
+      SavePreference.saveStringList('editedIndices', editedIndices);
+      SavePreference.saveStringList('editedArts', editedArts);
+      SavePreference.saveStringList('editedTitles', editedTitles);
+      SavePreference.saveStringList('editedArtists', editedArtists);
+
+      Navigator.pop(context);
+    }
+  }
+
+  //Edit titles
+  Container editSongDetails(String label, TextEditingController _controller) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       margin: EdgeInsets.all(20),
@@ -208,11 +209,11 @@ class _EditScreenState extends State<EditScreen> {
         borderRadius: BorderRadius.all(Radius.circular(40)),
       ),
       child: TextFormField(
+        controller: _controller,
         // ignore: missing_return
         validator: (input) {
           if (input.isEmpty) return 'This field should not be empty';
         },
-        initialValue: value,
         style: Theme.of(context).textTheme.headline6,
         decoration: InputDecoration(labelText: label, border: InputBorder.none),
         onSaved: (v) => label == 'Change Song Title'
@@ -222,19 +223,31 @@ class _EditScreenState extends State<EditScreen> {
     );
   }
 
-  //Setting everything up
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      setState(() {
+        _titleController.text = themeNotifier.getAlbumTitle(widget.index);
+        _artistController.text = themeNotifier.getAlbumArtist(widget.index);
+      });
+    }
+  }
+
+  //Setting colors
+  double deviceHeight;
+  Color light, dark;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    setupVisualResources();
-  }
-
-  //Setting visual resources
-  double deviceHeight;
-  Color light, dark;
-  setupVisualResources() {
     deviceHeight = MediaQuery.of(context).size.height;
     light = Theme.of(context).primaryColorLight;
     dark = Theme.of(context).primaryColorDark;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 }

@@ -35,17 +35,14 @@ class _SelectScreenState extends State<SelectScreen> {
     dark = Theme.of(context).primaryColorDark;
   }
 
-  //Song details
-  //Default
-  int _currentIndex = 0;
-
   //Retrieving local song details
   AudioFunctions audioFunctions = AudioFunctions();
   void getSongDetails() async {
     themeNotifier = Provider.of<ThemeNotifier>(context, listen: true);
     audioFunctions = themeNotifier.getAudioFunctions();
-    _currentIndex = await themeNotifier.getSongIndex();
   }
+
+  String query;
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +65,9 @@ class _SelectScreenState extends State<SelectScreen> {
                   isHome: false,
                 ),
                 SongList(
-                    themeNotifier: themeNotifier,
-                    listHeight: deviceHeight,
-                    audioFunctions: audioFunctions),
+                  audioFunctions: audioFunctions,
+                  songs: audioFunctions.songs,
+                ),
               ],
             ),
           ),

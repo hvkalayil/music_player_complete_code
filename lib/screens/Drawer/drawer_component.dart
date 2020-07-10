@@ -1,3 +1,4 @@
+import 'package:equalizer/equalizer.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,7 +85,23 @@ class _DrawerComponentState extends State<DrawerComponent> {
       margin: EdgeInsets.all(10),
       child: FlatButton(
         shape: RoundedRectangleBorder(),
-        onPressed: () {},
+        onPressed: () async {
+          if (name == 'EQUALIZER') {
+            Equalizer.init(0);
+            Equalizer.open(0);
+          } else if (name == 'ABOUT') {
+            showAboutDialog(
+                context: context,
+                applicationName: 'PLAYA',
+                applicationVersion: 'Version 1',
+                children: [
+                  Text('This is a simple music player '
+                      'designed in a neumorphistic design.'
+                      ' This is an early release version.'
+                      ' Feel free to report any bugs')
+                ]);
+          } else if (name == 'RATE APP') {}
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

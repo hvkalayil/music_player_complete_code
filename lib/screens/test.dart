@@ -15,7 +15,7 @@ class _TestScreenState extends State<TestScreen> {
   }
 
   Future<void> yay() async {
-    final data = await SpotifyAPI.getData('Pookal Pookum');
+    final data = await SpotifyAPI.getData('Pookal Pookum', 5);
     print(data.toString());
   }
 

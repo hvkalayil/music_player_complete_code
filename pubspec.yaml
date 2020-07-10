@@ -53,12 +53,19 @@ dependencies:
   image_cropper: ^1.2.3
 
 #  Editing Song details - Online
-  oauth2_client: ^1.4.2
+  oauth2_client: ^1.4.3
   flutter_web_auth: ^0.2.4
   image_downloader: ^0.20.0
+  flutter_secure_storage: ^3.3.3
 
 #  Toast
   fluttertoast: ^5.0.1
+
+#  Song Context menu
+  focused_menu: ^1.0.1
+
+#  Equalizer
+  equalizer: ^0.0.2+1
 
 
 dev_dependencies:

@@ -6,14 +6,10 @@ import 'package:musicplayer/utilities/constants.dart';
 import 'package:musicplayer/utilities/spotify_client.dart';
 import 'package:provider/provider.dart';
 
-class OnlineArt extends StatefulWidget {
+class OnlineArt extends StatelessWidget {
   const OnlineArt({Key key, @required this.index}) : super(key: key);
   final int index;
-  @override
-  _OnlineArtState createState() => _OnlineArtState();
-}
 
-class _OnlineArtState extends State<OnlineArt> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,7 +36,7 @@ class _OnlineArtState extends State<OnlineArt> {
   void onSearchClick(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     final themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
-    String _newName = themeNotifier.getAlbumTitle(widget.index);
+    String _newName = themeNotifier.getAlbumTitle(index);
     showDialog(
       context: context,
       barrierColor: Theme.of(context).primaryColorLight,
@@ -97,17 +93,22 @@ class _OnlineArtState extends State<OnlineArt> {
                   _formState.save();
 
                   //Fetching API Data
+                  const int limit = 10;
                   final Map<int, Map<String, dynamic>> _apiData =
-                      await SpotifyAPI.getData(_newName);
+                      await SpotifyAPI.getData(_newName, limit);
+                  FlutterToast.showToast(
+                    msg: 'Searching',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                  );
 
                   //Success
                   if (_apiData[0]['code'] == 200) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => PreviewScreen(
-                                  data: _apiData,
-                                )));
+                            builder: (context) =>
+                                PreviewScreen(data: _apiData, limit: limit)));
                   }
 
                   //Failure
