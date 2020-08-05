@@ -108,10 +108,9 @@ class _ButtonsState extends State<Buttons> {
                     child: RaisedButton(
                       padding: EdgeInsets.all(20),
                       onPressed: () async {
-                          FlutterToast.showToast(
-                              msg:
-                                  'Working on it. Not available in this version.');
-
+                        FlutterToast.showToast(
+                            msg:
+                                'Working on it. Not available in this version.');
                       },
                       child: Icon(
                         FontAwesomeIcons.download,
