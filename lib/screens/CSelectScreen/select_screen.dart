@@ -17,32 +17,27 @@ class SelectScreen extends StatefulWidget {
 }
 
 class _SelectScreenState extends State<SelectScreen> {
-  ThemeNotifier themeNotifier; //Provider Variable
-
+  //Initializing everything
+  ThemeNotifier themeNotifier;
+  AudioFunctions audioFunctions;
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    setupVisualResources();
-    getSongDetails(); //Function to retrieve local audio files & details
-  }
-
-  //Setting visual resources
-  double deviceHeight;
-  Color light, dark;
-  setupVisualResources() {
-    deviceHeight = MediaQuery.of(context).size.height;
-    light = Theme.of(context).primaryColorLight;
-    dark = Theme.of(context).primaryColorDark;
-  }
-
-  //Retrieving local song details
-  AudioFunctions audioFunctions = AudioFunctions();
-  void getSongDetails() async {
-    themeNotifier = Provider.of<ThemeNotifier>(context, listen: true);
+  void initState() {
+    super.initState();
+    themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
     audioFunctions = themeNotifier.getAudioFunctions();
+    final int downloadedSongslength = themeNotifier.downloadedSongs.length;
+    List<int> temp =
+        List<int>.generate(audioFunctions.len + downloadedSongslength, (index) {
+      int returnValue;
+      if (index < downloadedSongslength) {
+        returnValue = audioFunctions.len + index;
+      } else {
+        returnValue = index - downloadedSongslength;
+      }
+      return returnValue;
+    });
+    themeNotifier.setListOfIndices(temp);
   }
-
-  String query;
 
   @override
   Widget build(BuildContext context) {
@@ -74,5 +69,21 @@ class _SelectScreenState extends State<SelectScreen> {
         ),
       ),
     );
+  }
+
+  //Changing visuals on change
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setupVisualResources();
+  }
+
+  //Setting visual resources
+  double deviceHeight;
+  Color light, dark;
+  setupVisualResources() {
+    deviceHeight = MediaQuery.of(context).size.height;
+    light = Theme.of(context).primaryColorLight;
+    dark = Theme.of(context).primaryColorDark;
   }
 }

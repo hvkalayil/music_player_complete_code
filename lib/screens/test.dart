@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:musicplayer/utilities/spotify_client.dart';
 
 class TestScreen extends StatefulWidget {
   static String id = 'TestScreen';
@@ -8,17 +7,6 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  @override
-  void initState() {
-    super.initState();
-    yay();
-  }
-
-  Future<void> yay() async {
-    final data = await SpotifyAPI.getData('Pookal Pookum', 5);
-    print(data.toString());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +22,10 @@ class _TestScreenState extends State<TestScreen> {
                 Theme.of(context).primaryColorLight,
                 Theme.of(context).primaryColorDark
               ])),
+          child: RaisedButton(
+            onPressed: () {},
+            child: Text('GO'),
+          ),
         ),
       ),
     );

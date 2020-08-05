@@ -70,6 +70,17 @@ class AudioFunctions {
     }
   }
 
+  void playOnlineSong(String url) {
+    try {
+      audioPlayer.play(
+        url,
+        isLocal: false,
+      );
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   void pauseLocalSong() {
     audioPlayer.pause();
   }

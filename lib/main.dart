@@ -1,3 +1,4 @@
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:musicplayer/screens/CSelectScreen/select_screen.dart';
@@ -30,21 +31,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: themeNotifier.getTheme(),
-      title: 'Music Player',
-      home: SplashScreen(),
-      initialRoute: SplashScreen.id,
-      routes: {
-        TestScreen.id: (context) => TestScreen(),
-        SplashScreen.id: (context) => SplashScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
-        SelectScreen.id: (context) => SelectScreen(),
-        EditScreen.id: (context) => EditScreen(
-              index: 0,
-            ),
-      },
+    return FeatureDiscovery(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: themeNotifier.getTheme(),
+        title: 'Music Player',
+        home: SplashScreen(),
+        initialRoute: SplashScreen.id,
+        routes: {
+          TestScreen.id: (context) => TestScreen(),
+          SplashScreen.id: (context) => SplashScreen(),
+          HomeScreen.id: (context) => HomeScreen(),
+          SelectScreen.id: (context) => SelectScreen(),
+          EditScreen.id: (context) => EditScreen(
+                index: 0,
+              ),
+        },
+      ),
     );
   }
 }

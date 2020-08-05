@@ -61,6 +61,8 @@ class SpotifyAPI {
               'art': body['tracks']['items'][i]['album']['images'][0]['url'],
               'title': body['tracks']['items'][i]['album']['name'],
               'artist': body['tracks']['items'][i]['artists'][0]['name'],
+              'url': body['tracks']['items'][i]['preview_url'],
+              'href': body['tracks']['items'][i]['external_urls']['spotify'],
             }
           });
         } catch (e) {

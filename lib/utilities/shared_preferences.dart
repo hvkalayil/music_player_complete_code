@@ -6,7 +6,7 @@ class SavePreference {
     SharedPreferences.getInstance().then((prefs) => prefs.setBool(key, value));
   }
 
-  static getBool(String key) async {
+  static Future<bool> getBool(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key);
   }
@@ -43,9 +43,9 @@ class SavePreference {
     return prefs.getStringList(key);
   }
 
-  //CLEAR
-  static Future<void> clearEverything() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.clear();
-  }
+//  //CLEAR
+//  static Future<void> clearEverything() async {
+//    final prefs = await SharedPreferences.getInstance();
+//    return prefs.clear();
+//  }
 }

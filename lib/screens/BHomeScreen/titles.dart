@@ -11,8 +11,24 @@ class Titles extends StatelessWidget {
     //Setting everything
     double deviceWidth = MediaQuery.of(context).size.width;
     final themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
-    final String title = themeNotifier.getAlbumTitle(index);
-    final String artist = themeNotifier.getAlbumArtist(index);
+
+    String title;
+    if (themeNotifier.isOnlineSong) {
+      title = themeNotifier.apiData[themeNotifier.apiSelectedIndex]['title'];
+    } else {
+      title = index >= themeNotifier.getAudioFunctions().len
+          ? themeNotifier.downloadedSongs[index]['title']
+          : themeNotifier.getAlbumTitle(index);
+    }
+
+    String artist;
+    if (themeNotifier.isOnlineSong) {
+      artist = themeNotifier.apiData[themeNotifier.apiSelectedIndex]['artist'];
+    } else {
+      artist = index >= themeNotifier.getAudioFunctions().len
+          ? themeNotifier.downloadedSongs[index]['artist']
+          : themeNotifier.getAlbumArtist(index);
+    }
 
     //UI
     return Column(

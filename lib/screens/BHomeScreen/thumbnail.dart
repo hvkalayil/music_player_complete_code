@@ -12,18 +12,23 @@ class Thumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     //Setting everything
     final themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
-    final String path = themeNotifier.getAlbumArt(index);
+    String path = 'assets/thumbnail.jpg';
+    if (!themeNotifier.isOnlineSong) {
+      if (index >= themeNotifier.getAudioFunctions().len)
+        path = themeNotifier.downloadedSongs[index]['art'];
+      else
+        path = themeNotifier.getAlbumArt(index);
+    }
+
     final dark = Theme.of(context).primaryColorDark;
     final light = Theme.of(context).primaryColorLight;
-
-    //Could have mad this a single container.
-    // But that would make the external container respond.
 
     //UI
     return Container(
       margin: EdgeInsets.all(20),
-      height: 400,
-      width: 400,
+      padding: EdgeInsets.all(20),
+      width: MediaQuery.of(context).size.width - 100,
+      height: MediaQuery.of(context).size.width - 100,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -32,7 +37,6 @@ class Thumbnail extends StatelessWidget {
             colors: [dark, light]),
       ),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 60),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: dark,
@@ -47,7 +51,10 @@ class Thumbnail extends StatelessWidget {
                 offset: Offset(9, 9))
           ],
           image: DecorationImage(
-            image: loadThumbNail(File(path)),
+            image: themeNotifier.isOnlineSong
+                ? NetworkImage(themeNotifier
+                    .apiData[themeNotifier.apiSelectedIndex]['art'])
+                : loadThumbNail(File(path)),
             fit: BoxFit.fitHeight,
           ),
         ),

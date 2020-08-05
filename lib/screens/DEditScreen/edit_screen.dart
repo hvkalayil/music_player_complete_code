@@ -1,9 +1,14 @@
+import 'dart:math';
+
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:musicplayer/screens/BHomeScreen/home_screen.dart';
 import 'package:musicplayer/screens/BHomeScreen/thumbnail.dart';
 import 'package:musicplayer/theme/theme_notifier.dart';
 import 'package:musicplayer/utilities/constants.dart';
+import 'package:musicplayer/utilities/google_ads.dart';
 import 'package:musicplayer/utilities/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -19,11 +24,16 @@ class EditScreen extends StatefulWidget {
   _EditScreenState createState() => _EditScreenState();
 }
 
-class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
+class _EditScreenState extends State<EditScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    //Setting ad
+    _interstitialAd = InterstitialAd(
+      adUnitId: AdManager.interstitialAdUnitId,
+      listener: _onInterstitialAdEvent,
+    );
+
     savingOriginalDetails();
   }
 
@@ -52,7 +62,6 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
@@ -88,6 +97,9 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
 
                   //Change Song Author
                   editSongDetails('Change Song Artist', _artistController),
+
+                  //Banner Ad
+                  BannerAdPage()
                 ],
               ),
             ),
@@ -150,6 +162,14 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
 
   //Part of topbar
   Future<void> onSaveClick() async {
+    Random r = Random();
+    final bool show = r.nextBool();
+
+    if (show) {
+      _createInterstitalAd();
+      _interstitialAd..show();
+    }
+
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       _formState.save();
@@ -184,9 +204,8 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
       SavePreference.saveStringList('editedArts', editedArts);
       SavePreference.saveStringList('editedTitles', editedTitles);
       SavePreference.saveStringList('editedArtists', editedArtists);
-
-      Navigator.pop(context);
     }
+    if (!show) Navigator.pop(context);
   }
 
   //Edit titles
@@ -223,17 +242,6 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
     );
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.resumed) {
-      setState(() {
-        _titleController.text = themeNotifier.getAlbumTitle(widget.index);
-        _artistController.text = themeNotifier.getAlbumArtist(widget.index);
-      });
-    }
-  }
-
   //Setting colors
   double deviceHeight;
   Color light, dark;
@@ -245,9 +253,31 @@ class _EditScreenState extends State<EditScreen> with WidgetsBindingObserver {
     dark = Theme.of(context).primaryColorDark;
   }
 
+  //INTERSTITAL AD
+  InterstitialAd _interstitialAd;
+
+  void _createInterstitalAd() {
+    _interstitialAd = InterstitialAd(
+        adUnitId: AdManager.interstitialAdUnitId,
+        targetingInfo: targetingInfo,
+        listener: (event) => _onInterstitialAdEvent(event));
+    _interstitialAd..load();
+  }
+
+  void _onInterstitialAdEvent(MobileAdEvent event) {
+    switch (event) {
+      case MobileAdEvent.closed:
+        Navigator.popUntil(
+            context, (route) => route.settings.name == HomeScreen.id);
+        break;
+      default:
+      // do nothing
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    _interstitialAd.dispose();
   }
 }

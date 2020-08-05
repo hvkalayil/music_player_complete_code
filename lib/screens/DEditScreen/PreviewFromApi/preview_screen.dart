@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:musicplayer/theme/theme_notifier.dart';
 import 'package:musicplayer/utilities/constants.dart';
+import 'package:musicplayer/utilities/google_ads.dart';
 import 'package:provider/provider.dart';
 
 class PreviewScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   ],
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   width: MediaQuery.of(context).size.width,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
@@ -77,7 +78,8 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(40))),
                   child: Text('CANCEL'),
-                )
+                ),
+                BannerAdPage()
               ],
             ),
           ),
@@ -182,6 +184,8 @@ class _PreviewScreenState extends State<PreviewScreen> {
     themeNotifier.setArt(_path, _songIndex);
     themeNotifier.setTitle(_selectedMap['title'], _songIndex);
     themeNotifier.setArtist(_selectedMap['artist'], _songIndex);
+    themeNotifier.setNotifierTitle(_selectedMap['title']);
+    themeNotifier.setNotifierTitle(_selectedMap['artist']);
 
     //Popping back to edit screen
     int count = 0;
